@@ -17,8 +17,9 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 	
 	var marker = L.marker([47.23, 6.02]).addTo(map);
 	marker.addEventListener("click", function(){
-		marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+		marker.bindPopup("<b>Hello world!</b><br>Coucou").openPopup();
 	});
+	
 	
 	map.on('click', onMapClick);
 });
