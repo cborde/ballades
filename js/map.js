@@ -3,11 +3,34 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 	function onMapClick(e) {
 		alert("You clicked the map at " + e.latlng);
 	}
+	
+	function placeMarkers(data){
+		
+		dataJSON = JSON.parse(data);
+			
+		var lieux = dataJSON.Lieux;
+		for (let lieu in lieux){
+			var marker = L.marker([lieux[lieu].Latitude, lieux[lieu].Longitude]);
+			var html = "<b>" + lieux[lieu].Nom + "</b><p>" + lieux[lieu].Notes + "</p>";
+			marker.bindPopup(html);
+			marker.addTo(map);
+			marker.addEventListener("click", function(){
+				marker.openPopup();
+			});
+		}
+	}
 
 	/*
 	 * MAIN
 	 */ 
-	var map = L.map('mapid').setView([47.23, 6.02], 12);
+
+	var coord = {"lat" : 47.236011, "lon" :6.022074};
+	
+	/*if (navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(maPosition, erreurPosition);
+	}*/
+	
+	var map = L.map('mapid').setView([coord.lat, coord.lon], 12);
 	
 	var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data © OpenStreetMap contributors';
@@ -15,11 +38,19 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 	
 	map.addLayer(osm);
 	
-	var marker = L.marker([47.23, 6.02]).addTo(map);
-	marker.addEventListener("click", function(){
-		marker.bindPopup("<b>Hello world!</b><br>Coucou").openPopup();
-	});
-	
+	var xobj = new XMLHttpRequest();
+	xobj.overrideMimeType("application/json");
+	xobj.open('GET', './donnees/data.json', true);
+	xobj.onreadystatechange = function() {
+		if (xobj.readyState == 4 && xobj.status == "200") {
+
+			// .open will NOT return a value but simply returns undefined in async mode so use a callback
+			//callback(xobj.responseText);
+			//console.log(xobj.responseText);
+			placeMarkers(xobj.responseText);
+		}
+	}
+	xobj.send(null);
 	
 	map.on('click', onMapClick);
 });

@@ -1,0 +1,16 @@
+{
+	"Lieux":[
+		{
+			"Nom" : "La cascade du bout du Monde",
+			"Latitude": 47.205018,
+			"Longitude": 6.011195,
+			"Notes": "Possibilité de le faire en vélo"
+		},
+		{
+			"Nom" : "Arguel",
+			"Latitude" : 47.198165,
+			"Longitude" : 6.002097,
+			"Notes" : "Falaises pas loin"
+		}
+		]
+}
