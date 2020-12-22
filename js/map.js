@@ -9,13 +9,15 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 		dataJSON = JSON.parse(data);
 			
 		var lieux = dataJSON.Lieux;
+		var markers = [];
 		for (let lieu in lieux){
-			var marker = L.marker([lieux[lieu].Latitude, lieux[lieu].Longitude]);
 			var html = "<b>" + lieux[lieu].Nom + "</b><p>" + lieux[lieu].Notes + "</p>";
-			marker.bindPopup(html);
-			marker.addTo(map);
-			marker.addEventListener("click", function(){
-				marker.openPopup();
+			markers[lieu] = L.marker([lieux[lieu].Latitude, lieux[lieu].Longitude]).bindPopup(html);
+		}
+		for (let i in markers){
+			markers[i].addTo(map);
+			markers[i].addEventListener("click", function(){
+				markers[i].openPopup();
 			});
 		}
 	}
