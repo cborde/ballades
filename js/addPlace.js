@@ -1,23 +1,46 @@
 document.addEventListener("DOMContentLoaded", function(_e) {
 	
+	function createDownload(text, file){
+		var c = document.createElement("A");//Ne pas toucher "A";
+		var d = document.body;
+		d.appendChild(c);
+		c.href = 'data:json/plain;charset=utf-8,' + encodeURIComponent(text);
+		c.download = file;
+		c.click();
+		d.removeChild(c);
+	}
+	
 	function addInDataJSON(data, name, notes, latitude, longitude){
-		console.log("ADD IN JSON");
+		/*console.log("ADD IN JSON");
 		console.log(name);
 		console.log(notes);
 		console.log(latitude);
-		console.log(longitude);
+		console.log(longitude);*/
 		
 		var dataJSON = JSON.parse(data);
 		var lieux = dataJSON.Lieux;
 		
 		var objL = {
 			"Nom" : name,
-			"Latitude" : latitude,
-			"Longitude" : longitude,
-			"Notes" : notes
+			"Latitude" : parseFloat(latitude),
+			"Longitude" : parseFloat(longitude),
+			"Notes" : notes,
+			"Categorie" : "A faire"
 		};
 		lieux.push(objL);
 		
+		var jsonObj = {
+			"Categories" : dataJSON.Categories,
+			"Lieux" : lieux
+		};
+		
+		var jsonFile = JSON.stringify(jsonObj);
+		
+		let fileName = "data.json";
+
+		createDownload(jsonFile, fileName);
+		
+		window.location = "../index.html";
 	}
 	
 	
