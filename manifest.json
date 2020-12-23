@@ -1,6 +1,6 @@
 {
-    "name": "Ballade",
-    "short_name": "ballade",
+    "name": "Ballade : Notes les points pour t'en souvenir !",
+    "short_name": "Ballade",
     "description": "Noter les points pour des futures balades. Application destinée a être utilisée seulement par son propriétaire",
     "icons": [
         {
