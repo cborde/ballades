@@ -1,7 +1,15 @@
 document.addEventListener("DOMContentLoaded", function(_e) {
 	
 	function onMapClick(e) {
-		alert("You clicked the map at " + e.latlng);
+		var html = "<input type='button' id='addPlace' value='Ajouter ce lieu'/>";
+		var latitude = e.latlng.lat;
+		var longitude = e.latlng.lng;
+		
+		var marker = L.marker([latitude, longitude]).bindPopup(html).addTo(map).openPopup();
+		
+		document.getElementById("addPlace").addEventListener("click", function(){
+			window.location = "./html/addPlace.html?lat="+latitude+"&lon="+longitude;
+		});
 	}
 	
 	function placeMarkers(data){
