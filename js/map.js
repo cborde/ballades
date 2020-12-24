@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 		var lieux = dataJSON.Lieux;
 		var markers = [];
 		for (let lieu in lieux){
-			var html = "<b>" + lieux[lieu].Nom + "</b><p>" + lieux[lieu].Notes + "</p>";
+			var html = "<b>" + lieux[lieu].Nom + "</b><p>" + lieux[lieu].Notes + "</p><p><a class='linkGMaps' href='https://www.google.fr/maps/search/"+lieux[lieu].Nom+"' target='_blank'>GMaps</a>";
 			markers[lieu] = L.marker([lieux[lieu].Latitude, lieux[lieu].Longitude]).bindPopup(html);
 			if (lieux[lieu].Categorie == "A faire"){
 				markers[lieu].setIcon(myIconBlue);
@@ -98,6 +98,8 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 		iconAnchor: [12,41]
 	});
 	
+	document.getElementById("myPopupMenu").style.display = "none";
+
 	var map = L.map('mapid').setView([coord.lat, coord.lon], 12);
 	
 	
@@ -121,11 +123,25 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 	}
 	xobj.send(null);
 	
+	map.on('click', onMapClick);
+	
+	document.getElementById("myOpenPopupMenu").addEventListener("click", function(){
+		document.getElementById("myOpenPopupMenu").style.display = "none";
+		document.getElementById("myPopupMenu").style.display = "block";
+	});
+	
+	document.getElementById("closePopupMenu").addEventListener("click", function(){
+		document.getElementById("myPopupMenu").style.display = "none";
+		document.getElementById("myOpenPopupMenu").style.display = "block";
+	});
+	
 	document.getElementById("localisationBTN").addEventListener("click", function(){
 		if (navigator.geolocation){
 			navigator.geolocation.getCurrentPosition(setViewMap, erreurPosition);
 		}
+		document.getElementById("myPopupMenu").style.display = "none";
+		document.getElementById("myOpenPopupMenu").style.display = "block";
 	});
 	
-	map.on('click', onMapClick);
+	
 });

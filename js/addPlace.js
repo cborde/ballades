@@ -6,7 +6,13 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 		
 		var html = "<select id='selectCategoryInput' name='Category'>";
 		for (categ in categories){
-			html += "<option id='cat" + categ + "' value='" + categories[categ] + "'>" + categories[categ] + "</option>";
+			var classCSS = "yellowBG";
+			if (categories[categ] == "A faire"){
+				classCSS = "blueBG";
+			} else if (categories[categ] == "Vu - OK"){
+				classCSS = "greenBG";
+			}
+			html += "<option class='"+classCSS+"' id='cat" + categ + "' value='" + categories[categ] + "'>" + categories[categ] + "</option>";
 		}
 		html += "</select>";
 		

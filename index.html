@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <title>Ballade</title>
+    <title>Balade</title>
     <meta charset="utf-8">
 	
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
@@ -14,7 +14,7 @@
     <meta property="og:image" content="icons/icons.png">
     
     <!-- https://developer.mozilla.org/fr/docs/Mozilla/Mobile/Balise_meta_viewport -->
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimal-ui,shrink-to-fit=no" />    
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimal-ui,shrink-to-fit=no" /> 
     
 	<link rel="manifest" href="./manifest.json">
 	
@@ -36,8 +36,28 @@
 
 
 <body>
-<h1></h1>
-<input type='button' id='localisationBTN' value="LocalisationActuelle"/>
+
+
+<section id="sectionIndex">
+
+<div class="popupMenu" id="myPopupMenu">
+	<div id="globalTitleMenu">
+		<div id="TitleMenu">Menu</div>
+		<img id="closePopupMenu" src="./images/fermer.png" alt="Fermer"/>
+	</div>
+	<div id="localisation">
+		<input type='button' id='localisationBTN' value="LocalisationActuelle"/>
+	</div>
+</div>
+
+<div class="openPopupMenu" id="myOpenPopupMenu">
+<img id="img-menu" src="./images/menu.png" alt="Menu"/>
+</div>
+
 <div id="mapid">
 </div>
+
+</section>
+
+
 </body>

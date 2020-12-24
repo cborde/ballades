@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <title>Ballade</title>
+    <title>Balade</title>
 	<meta charset="utf-8">
 	
 	<link rel="stylesheet" href="../css/ballade.css">
@@ -13,12 +13,17 @@
 
 
 <body>
-<h1>Ajouter un lieu</h1>
+<h2>Ajouter un lieu</h2>
 <div id="form">
-<label for="name">Nom :<input type="text" id="name"></input></label>
+<label for="name">Nom :</label>
+<input type="text" id="name"></input>
 <br>
-<label for="notes">Notes :</label><textarea id="notes"></textarea>
-<p>Latitude : <span id="latSpan"></span>, Longitude : <span id="lonSpan"></span></p>
+<label for="notes">Notes :</label><textarea id="notes" rows="4"></textarea>
+<div id="coordonnees">
+	Latitude : <span id="latSpan"></span>
+	<br> 
+	Longitude : <span id="lonSpan"></span>
+</div>
 <div id="selectCategory"></div>
 <input type='button' id='addPlaceButton' value="Ajouter ce lieu"/>
 </div>
