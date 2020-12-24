@@ -1,5 +1,24 @@
 document.addEventListener("DOMContentLoaded", function(_e) {
 	
+	function placeCategories(data){
+		var dataJSON = JSON.parse(data);
+		var categories = dataJSON.Categories;
+		
+		var html = "<select id='selectCategoryInput' name='Category'>";
+		for (categ in categories){
+			html += "<option id='cat" + categ + "' value='" + categories[categ] + "'>" + categories[categ] + "</option>";
+		}
+		html += "</select>";
+		
+		document.getElementById("selectCategory").innerHTML = html;
+		
+		document.getElementById("addPlaceButton").addEventListener("click", function(){
+			var selectC = document.getElementById("selectCategoryInput");
+			addInDataJSON(dataJSON, document.getElementById("name").value, document.getElementById("notes").value, selectC.options[selectC.selectedIndex].value);
+		});
+		
+	}
+	
 	function createDownload(text, file){
 		var c = document.createElement("A");//Ne pas toucher "A";
 		var d = document.body;
@@ -10,14 +29,8 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 		d.removeChild(c);
 	}
 	
-	function addInDataJSON(data, name, notes, latitude, longitude){
-		/*console.log("ADD IN JSON");
-		console.log(name);
-		console.log(notes);
-		console.log(latitude);
-		console.log(longitude);*/
+	function addInDataJSON(dataJSON, name, notes, category){
 		
-		var dataJSON = JSON.parse(data);
 		var lieux = dataJSON.Lieux;
 		
 		var objL = {
@@ -25,8 +38,11 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 			"Latitude" : parseFloat(latitude),
 			"Longitude" : parseFloat(longitude),
 			"Notes" : notes,
-			"Categorie" : "A faire"
+			"Categorie" : category
 		};
+		
+		console.log("OBJET AJOUTE :", objL);
+		
 		lieux.push(objL);
 		
 		var jsonObj = {
@@ -62,11 +78,7 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 	 document.getElementById("latSpan").innerHTML = latitude;
 	 document.getElementById("lonSpan").innerHTML = longitude;
 	 
-	 document.getElementById("addPlaceButton").addEventListener("click", function(){
-		 var name = document.getElementById("name").value;
-		 var notes = document.getElementById("notes").value;
-		 
-		 var xobj = new XMLHttpRequest();
+	 var xobj = new XMLHttpRequest();
 		 xobj.overrideMimeType("application/json");
 		 xobj.open('GET', '../donnees/data.json', true);
 		 xobj.onreadystatechange = function() {
@@ -75,11 +87,11 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 				// .open will NOT return a value but simply returns undefined in async mode so use a callback
 				//callback(xobj.responseText);
 				//console.log(xobj.responseText);
-			 	addInDataJSON(xobj.responseText, name, notes, latitude, longitude);
+					placeCategories(xobj.responseText);
 			 }
 		 }
 		 xobj.send(null);
-		 
-	 });
+	 
+
 	
 });
