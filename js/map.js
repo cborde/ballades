@@ -64,32 +64,38 @@ document.addEventListener("DOMContentLoaded", function(_e) {
 	/*Définition des icones*/
 	var myIconYellow = L.icon({
 		iconUrl: './js/markersIcons/marker-icon-yellow.png',
-		iconSize: [25, 41]
+		iconSize: [25, 41],
+		iconAnchor: [12,41]
 	});
 	
 	var myIconBlue = L.icon({
 		iconUrl: './js/markersIcons/marker-icon-blue.png',
-		iconSize: [25, 41]
+		iconSize: [25, 41],
+		iconAnchor: [12,41]
 	});
 	
 	var myIconGreen = L.icon({
 		iconUrl: './js/markersIcons/marker-icon-green.png',
-		iconSize: [25, 41]
+		iconSize: [25, 41],
+		iconAnchor: [12,41]
 	});
 	
 	var myIconRed = L.icon({
 		iconUrl: './js/markersIcons/marker-icon-red.png',
-		iconSize: [25, 41]
+		iconSize: [25, 41],
+		iconAnchor: [12,41]
 	});
 	
 	var myIconGrey = L.icon({
 		iconUrl: './js/markersIcons/marker-icon-grey.png',
-		iconSize: [25, 41]
+		iconSize: [25, 41],
+		iconAnchor: [12,41]
 	});
 	
 	var myIconBlack = L.icon({
 		iconUrl: './js/markersIcons/marker-icon-black.png',
-		iconSize: [25, 41]
+		iconSize: [25, 41],
+		iconAnchor: [12,41]
 	});
 	
 	var map = L.map('mapid').setView([coord.lat, coord.lon], 12);
